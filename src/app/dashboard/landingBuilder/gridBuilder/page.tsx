@@ -5,14 +5,15 @@ import GridRow from "./gridRow";
 import styles from "./style.module.css";
 import { Row, Column } from "./types";
 import Preview from "./preview";
+import { generateUniqueId } from "../../../../utils/uniqueId";
 
 export default function Home() {
   const [rows, setRows] = useState<Row[]>([]);
 
   const addRow = () => {
     const newRow: Row = {
-      id: Date.now(), // Identificador único
-      columns: [{ id: Date.now(), size: 6 }], // Columna inicial con tamaño 6
+      id: generateUniqueId(), // Identificador único
+      columns: [{ id: generateUniqueId(), size: 6 }], // Columna inicial con tamaño 6
     };
     setRows([...rows, newRow]);
   };

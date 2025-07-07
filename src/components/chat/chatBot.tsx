@@ -18,7 +18,6 @@ import InputSend from "./inputSend";
 import { AnimatePresence } from "motion/react"
 import * as motion from "motion/react-client"
 import MarkdownRender from "./markdown_answer";
-import ParticlesBackground from "../background/ParticlesBackground";
 
 export default function ChatBot() {
   const [open, setOpen] = useState(false);
@@ -90,10 +89,8 @@ export default function ChatBot() {
                     <CloseIcon />
                   </IconButton>
                 }
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
+                title="GenIAl Chat"
               />
-              {/* <ParticlesBackground /> */}
               <CardContent sx={{ display: "flex", flexDirection: "column", gap: 1, height: 400, overflow: "auto" }} ref={chatContentRef}>
 
                 {/* Área de respuesta con Markdown */}

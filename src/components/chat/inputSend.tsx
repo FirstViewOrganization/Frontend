@@ -4,7 +4,7 @@ import { CircularProgress, IconButton, TextField } from '@mui/material';
 import SendIcon from "@mui/icons-material/Send";
 import React, { useState } from 'react'
 
-
+const API_AUTH = process.env.NEXT_PUBLIC_API_AUTH;
 
 interface InputSendProps {
     conversation: any[];
@@ -25,13 +25,27 @@ export default function inputSend({ conversation, setConversation, loading, setL
         setQuestion(""); // Limpiar el campo de entrada
         setLoading(true); // Activar el loader
 
-        const response = await fetch("http://127.0.0.1:8000/api/ask", {
+        const headers: HeadersInit = {
+            "Content-Type": "application/json",
+        };
+        if (API_AUTH) {
+            headers["X-API-Key"] = API_AUTH;
+            console.log('headers', API_AUTH);
+        }
+
+        const response = await fetch("http://127.0.0.1:8000/ask", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
+            headers,
             body: JSON.stringify({ question }),
         });
+
+        const response1 = await fetch("https://n8n.srv870791.hstgr.cloud/webhook-test/f922639e-5039-41aa-bd4d-1f82898115b7", {
+            method: "POST",
+            headers,
+            body: JSON.stringify({ question }),
+        });
+        console.log('response1', response1);
+
         const data = await response.json();
         setConversation([
             ...conversation,

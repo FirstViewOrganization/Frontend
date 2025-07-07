@@ -4,6 +4,8 @@ import { TextField, Button, IconButton } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import DeleteIcon from "@mui/icons-material/Delete"; // Icono de eliminar
 import { GridRowProps, Column } from "./types";
+import { generateUniqueId } from "../../../../utils/uniqueId";
+
 
 export default function GridRow({ row, updateRowColumns }: GridRowProps) {
   const [columns, setColumns] = useState<Column[]>(row.columns);
@@ -25,7 +27,7 @@ export default function GridRow({ row, updateRowColumns }: GridRowProps) {
 
   const addColumn = () => {
     const newColumn: Column = {
-      id: Date.now(), // Identificador único
+      id: generateUniqueId(), // Identificador único
       size: 1, // Tamaño inicial de la nueva columna
     };
 
