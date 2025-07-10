@@ -1,3 +1,4 @@
+
 "use client";
 
 import { styled, Theme, CSSObject } from '@mui/material/styles';
@@ -47,40 +48,12 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 interface AppBarProps extends MuiAppBarProps {
     open?: boolean;
-
+}
 
 interface HeaderProps {
   open: boolean;
   handleDrawerOpen: MouseEventHandler<HTMLButtonElement>;
   handleDrawerClose: MouseEventHandler<HTMLButtonElement>;
-}
-
-export default function Header({ open, handleDrawerOpen, handleDrawerClose }: HeaderProps) {
-  const { isDarkMode, toggleDarkMode } = useTheme();
-
-  return (
-    <AppBar position="fixed" open={open}>
-      <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={open ? handleDrawerClose : handleDrawerOpen}
-          edge="start"
-          sx={{ marginRight: 2 }}
-        >
-          {open ? <MenuOpenIcon /> : <MenuIcon />}
-        </IconButton>
-        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-          Dashboard
-        </Typography>
-        <IconButton sx={{ ml: 1 }} onClick={toggleDarkMode} color="inherit">
-          {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-        </IconButton>
-      </Toolbar>
-    </AppBar>
-  );
-}
-
 }
 
 const AppBar = styled(MuiAppBar, {
@@ -118,3 +91,29 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
         ],
     }),
 );
+
+export default function Header({ open, handleDrawerOpen, handleDrawerClose }: HeaderProps) {
+  const { isDarkMode, toggleDarkMode } = useTheme();
+
+  return (
+    <AppBar position="fixed" open={open}>
+      <Toolbar>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          onClick={open ? handleDrawerClose : handleDrawerOpen}
+          edge="start"
+          sx={{ marginRight: 2 }}
+        >
+          {open ? <MenuOpenIcon /> : <MenuIcon />}
+        </IconButton>
+        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+          Dashboard
+        </Typography>
+        <IconButton sx={{ ml: 1 }} onClick={toggleDarkMode} color="inherit">
+          {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+  );
+}
