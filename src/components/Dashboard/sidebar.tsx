@@ -97,6 +97,7 @@ const menuItems = [
   { name: 'Documentos', icon: <BrainCircuit  />, link: '/dashboard/documents' },
   { name: 'Mensajes', icon: <Mail />, link: '/dashboard' },
   { name: 'Landing Builder', icon: <Wrench />, link: '/dashboard/landingBuilder' },
+  { name: 'Catalogo', icon: <InventoryIcon />, link: '/dashboard/catalogo' },
 ];
 
 
