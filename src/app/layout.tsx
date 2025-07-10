@@ -1,6 +1,7 @@
 "use client";
 import "./globals.css";
 import ChatBot2 from "@/components/chat/chatBot";
+import { CustomThemeProvider } from "@/contexts/ThemeContext";
 
 export default function RootLayout({
   children,
@@ -12,10 +13,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main >
-          {children}
-        </main>
-        <ChatBot2 />
+        <CustomThemeProvider>
+          <main >
+            {children}
+          </main>
+          <ChatBot2 />
+        </CustomThemeProvider>
       </body>
     </html>
   );
