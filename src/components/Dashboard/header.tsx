@@ -118,35 +118,3 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
         ],
     }),
 );
-
-export default function Header({open, handleDrawerOpen,handleDrawerClose}: {open:boolean, handleDrawerOpen: () => void , handleDrawerClose: () => void }) {
-
-    return (
-        <AppBar position="fixed" open={open}>
-            <Toolbar>
-                {open ? <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    onClick={handleDrawerClose}
-                    edge="start"
-                >
-                    <MenuOpenIcon />
-                </IconButton> :
-                    <IconButton
-                        color="inherit"
-                        aria-label="cerrar cajón"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                }
-
-                <Typography variant="h6" noWrap component="div">
-                    Mini variant drawer
-                </Typography>
-            </Toolbar>
-        </AppBar>
-    )
-}
