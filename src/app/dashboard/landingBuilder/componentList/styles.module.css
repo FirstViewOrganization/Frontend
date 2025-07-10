@@ -1,0 +1,6 @@
+.component-list{
+    padding: 10px;
+    overflow-y: auto;
+    height: calc(100vh - 112px);
+    background-color:rgba(233, 233, 233, 0.396) !important
+}
