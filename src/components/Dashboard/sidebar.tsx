@@ -14,6 +14,11 @@ import ListItemText from '@mui/material/ListItemText';
 import Link from 'next/link';
 
 import { Wrench, Mail, BrainCircuit  } from 'lucide-react';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ArticleIcon from '@mui/icons-material/Article';
+import WebIcon from '@mui/icons-material/Web';
+import StorefrontIcon from '@mui/icons-material/Storefront';
 
 
 const drawerWidth = 240;
