@@ -2,6 +2,7 @@
 import Content from "@/components/Dashboard/content";
 import Header from "@/components/Dashboard/header";
 import Sidebar from "@/components/Dashboard/sidebar";
+import ProtectedRoute from "@/components/auth/ProtectedRoute";
 import { useState } from "react";
 
 export default function RootLayout({
@@ -22,7 +23,7 @@ export default function RootLayout({
   };
 
   return (
-    <>
+    <ProtectedRoute>
       <div>
         <Header
           open={open}
@@ -40,6 +41,6 @@ export default function RootLayout({
           </Content>
         </Sidebar>
       </div>
-    </>
+    </ProtectedRoute>
   );
 }

@@ -11,8 +11,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { MouseEventHandler } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
+import { useAuth } from '@/contexts/AuthContext';
 
 const drawerWidth = 240;
 
@@ -94,6 +96,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function Header({ open, handleDrawerOpen, handleDrawerClose }: HeaderProps) {
   const { isDarkMode, toggleDarkMode } = useTheme();
+  const { user, logout } = useAuth();
 
   return (
     <AppBar position="fixed" open={open}>
@@ -110,8 +113,16 @@ export default function Header({ open, handleDrawerOpen, handleDrawerClose }: He
         <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
           Dashboard
         </Typography>
+        {user && (
+          <Typography variant="body2" sx={{ mr: 2 }}>
+            {user.email}
+          </Typography>
+        )}
         <IconButton sx={{ ml: 1 }} onClick={toggleDarkMode} color="inherit">
           {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+        </IconButton>
+        <IconButton sx={{ ml: 1 }} onClick={logout} color="inherit">
+          <LogoutIcon />
         </IconButton>
       </Toolbar>
     </AppBar>
