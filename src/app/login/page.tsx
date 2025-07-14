@@ -2,6 +2,7 @@
 "use client";
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/contexts/AuthContext';
 import {
   Box,
   Container,
@@ -35,20 +36,16 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { login } = useAuth();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
-    // Simulación de autenticación - reemplazar con lógica real
     try {
-      if (email === 'admin@example.com' && password === 'password') {
-        // Guardar token o estado de autenticación
-        localStorage.setItem('isAuthenticated', 'true');
-        localStorage.setItem('userEmail', email);
-        
-        // Redirigir al dashboard
+      const success = await login(email, password);
+      if (success) {
         router.push('/dashboard');
       } else {
         setError('Credenciales incorrectas');
