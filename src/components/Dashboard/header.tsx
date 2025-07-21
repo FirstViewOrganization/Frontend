@@ -15,7 +15,7 @@ import { MouseEventHandler, useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useAuth } from '@/contexts/AuthContext';
 import PaletteIcon from '@mui/icons-material/Palette';
-import ThemeCustomizer from '@/components/ThemeCustomizer';
+import ThemeCustomizer from '@/components/Dashboard/ThemeCustomizer';
 
 const drawerWidth = 240;
 
