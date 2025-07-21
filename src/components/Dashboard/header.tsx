@@ -101,39 +101,36 @@ export default function Header({ open, handleDrawerOpen, handleDrawerClose }: He
   const [themeCustomizerOpen, setThemeCustomizerOpen] = useState(false);
 
   return (
-    <AppBar position="fixed" open={open}>
-      <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={open ? handleDrawerClose : handleDrawerOpen}
-          edge="start"
-          sx={{ marginRight: 2 }}
-        >
-          {open ? <MenuOpenIcon /> : <MenuIcon />}
-        </IconButton>
-        <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-          Dashboard
-        </Typography>
-        {user && (
-          <Typography variant="body2" sx={{ mr: 2 }}>
-            {user.email}
+    <>
+      <AppBar position="fixed" open={open}>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={open ? handleDrawerClose : handleDrawerOpen}
+            edge="start"
+            sx={{ marginRight: 2 }}
+          >
+            {open ? <MenuOpenIcon /> : <MenuIcon />}
+          </IconButton>
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+            Dashboard
           </Typography>
-        )}
-        <IconButton sx={{ ml: 1 }} onClick={toggleDarkMode} color="inherit">
-          {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-        </IconButton>
-        <IconButton sx={{ ml: 1 }} onClick={() => setThemeCustomizerOpen(true)} color="inherit">
-          <PaletteIcon />
-        </IconButton>
-        <IconButton sx={{ ml: 1 }} onClick={logout} color="inherit">
-          <LogoutIcon />
-        </IconButton>
-      </Toolbar>
-    </AppBar>
-    <ThemeCustomizer 
+          <IconButton sx={{ ml: 1 }} onClick={toggleDarkMode} color="inherit">
+            {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+          </IconButton>
+          <IconButton sx={{ ml: 1 }} onClick={() => setThemeCustomizerOpen(true)} color="inherit">
+            <PaletteIcon />
+          </IconButton>
+          <IconButton sx={{ ml: 1 }} onClick={logout} color="inherit">
+            <LogoutIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <ThemeCustomizer 
         open={themeCustomizerOpen} 
         onClose={() => setThemeCustomizerOpen(false)} 
       />
+    </>
   );
 }
