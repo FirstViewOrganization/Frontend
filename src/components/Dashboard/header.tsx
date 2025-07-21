@@ -1,4 +1,3 @@
-
 "use client";
 
 import { styled, Theme, CSSObject } from '@mui/material/styles';
@@ -12,9 +11,11 @@ import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useAuth } from '@/contexts/AuthContext';
+import PaletteIcon from '@mui/icons-material/Palette';
+import ThemeCustomizer from '@/components/ThemeCustomizer';
 
 const drawerWidth = 240;
 
@@ -96,7 +97,8 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function Header({ open, handleDrawerOpen, handleDrawerClose }: HeaderProps) {
   const { isDarkMode, toggleDarkMode } = useTheme();
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
+  const [themeCustomizerOpen, setThemeCustomizerOpen] = useState(false);
 
   return (
     <AppBar position="fixed" open={open}>
@@ -121,10 +123,17 @@ export default function Header({ open, handleDrawerOpen, handleDrawerClose }: He
         <IconButton sx={{ ml: 1 }} onClick={toggleDarkMode} color="inherit">
           {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
         </IconButton>
+        <IconButton sx={{ ml: 1 }} onClick={() => setThemeCustomizerOpen(true)} color="inherit">
+          <PaletteIcon />
+        </IconButton>
         <IconButton sx={{ ml: 1 }} onClick={logout} color="inherit">
           <LogoutIcon />
         </IconButton>
       </Toolbar>
     </AppBar>
+    <ThemeCustomizer 
+        open={themeCustomizerOpen} 
+        onClose={() => setThemeCustomizerOpen(false)} 
+      />
   );
 }
