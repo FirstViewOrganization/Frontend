@@ -46,9 +46,10 @@ const StatsCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(4),
   textAlign: 'center',
   borderRadius: theme.shape.borderRadius * 3,
-  background: '#ffffff',
-  border: `2px solid ${alpha(theme.palette.primary.main, 0.15)}`,
-  boxShadow: `0 4px 20px ${alpha(theme.palette.primary.main, 0.1)}`,
+  background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+  color: '#ffffff',
+  border: 'none',
+  boxShadow: `0 8px 32px ${alpha(theme.palette.primary.main, 0.4)}`,
   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   position: 'relative',
   overflow: 'hidden',
@@ -59,7 +60,7 @@ const StatsCard = styled(Card)(({ theme }) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+    background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.secondary.dark} 100%)`,
     opacity: 0,
     transition: 'opacity 0.3s ease',
     zIndex: 0
@@ -68,21 +69,26 @@ const StatsCard = styled(Card)(({ theme }) => ({
     position: 'relative',
     zIndex: 1
   },
-  '&:hover': {
-    transform: 'translateY(-8px)',
-    boxShadow: `0 20px 40px ${alpha(theme.palette.primary.main, 0.3)}`,
-    border: `2px solid ${theme.palette.primary.main}`,
+  '& .MuiTypography-root': {
+    color: '#ffffff'
+  },
+  '& .MuiChip-root': {
+    backgroundColor: alpha('#ffffff', 0.2),
     color: '#ffffff',
+    fontWeight: 600,
+    border: `1px solid ${alpha('#ffffff', 0.3)}`
+  },
+  '&:hover': {
+    transform: 'translateY(-12px) scale(1.02)',
+    boxShadow: `0 25px 50px ${alpha(theme.palette.primary.main, 0.6)}`,
     '&::before': {
       opacity: 1
     },
-    '& .MuiTypography-root': {
-      color: '#ffffff !important'
-    },
     '& .MuiChip-root': {
-      backgroundColor: alpha('#ffffff', 0.2),
-      color: '#ffffff',
-      fontWeight: 700
+      backgroundColor: '#ffffff',
+      color: theme.palette.primary.main,
+      fontWeight: 700,
+      transform: 'scale(1.05)'
     }
   }
 }));
@@ -305,15 +311,17 @@ export default function ModernLanding() {
                 <StatsCard elevation={0}>
                   <Typography variant="h3" component="div" sx={{ 
                     fontWeight: 800, 
-                    background: `linear-gradient(45deg, ${palette[600]}, ${palette[500]})`,
-                    backgroundClip: 'text',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
+                    color: '#ffffff',
+                    textShadow: '0 2px 4px rgba(0,0,0,0.3)',
                     mb: 1 
                   }}>
                     {stat.number}
                   </Typography>
-                  <Typography variant="body1" color="text.secondary" sx={{ fontWeight: 500 }}>
+                  <Typography variant="body1" sx={{ 
+                    fontWeight: 500,
+                    color: alpha('#ffffff', 0.9),
+                    mb: 2
+                  }}>
                     {stat.label}
                   </Typography>
                   <Chip 
@@ -321,9 +329,11 @@ export default function ModernLanding() {
                     size="small" 
                     sx={{ 
                       mt: 1, 
-                      backgroundColor: alpha(palette[500], 0.1),
-                      color: 'primary.main',
-                      fontWeight: 600
+                      backgroundColor: alpha('#ffffff', 0.2),
+                      color: '#ffffff',
+                      fontWeight: 600,
+                      border: `1px solid ${alpha('#ffffff', 0.3)}`,
+                      transition: 'all 0.3s ease'
                     }} 
                   />
                 </StatsCard>
