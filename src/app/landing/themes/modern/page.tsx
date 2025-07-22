@@ -46,13 +46,15 @@ const StatsCard = styled(Card)(({ theme }) => ({
   padding: theme.spacing(4),
   textAlign: 'center',
   borderRadius: theme.shape.borderRadius * 3,
-  background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.1)} 0%, ${alpha(theme.palette.secondary.main, 0.05)} 100%)`,
-  border: `1px solid ${alpha(theme.palette.primary.main, 0.1)}`,
+  background: '#ffffff',
+  border: `2px solid ${alpha(theme.palette.primary.main, 0.15)}`,
+  boxShadow: `0 4px 20px ${alpha(theme.palette.primary.main, 0.1)}`,
   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   '&:hover': {
     transform: 'translateY(-8px)',
-    boxShadow: `0 20px 40px ${alpha(theme.palette.primary.main, 0.15)}`,
-    border: `1px solid ${alpha(theme.palette.primary.main, 0.3)}`
+    boxShadow: `0 20px 40px ${alpha(theme.palette.primary.main, 0.2)}`,
+    border: `2px solid ${alpha(theme.palette.primary.main, 0.4)}`,
+    background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.05)} 0%, #ffffff 100%)`
   }
 }));
 
@@ -76,12 +78,35 @@ const GradientButton = styled(Button)(({ theme }) => ({
   fontWeight: 600,
   textTransform: 'none',
   fontSize: '1.1rem',
+  color: '#ffffff !important',
+  border: `2px solid transparent`,
   boxShadow: `0 8px 24px ${alpha(theme.palette.primary.main, 0.3)}`,
   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+  position: 'relative',
+  overflow: 'hidden',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.secondary.dark})`,
+    opacity: 0,
+    transition: 'opacity 0.3s ease'
+  },
   '&:hover': {
     transform: 'translateY(-2px)',
-    boxShadow: `0 12px 32px ${alpha(theme.palette.primary.main, 0.4)}`,
-    background: `linear-gradient(45deg, ${theme.palette.primary.dark}, ${theme.palette.secondary.dark})`
+    boxShadow: `0 12px 32px ${alpha(theme.palette.primary.main, 0.5)}`,
+    border: `2px solid ${alpha('#ffffff', 0.3)}`,
+    '&::before': {
+      opacity: 1
+    }
+  },
+  '& .MuiButton-label, & *': {
+    position: 'relative',
+    zIndex: 1,
+    color: '#ffffff !important'
   }
 }));
 
@@ -407,18 +432,30 @@ export default function ModernLanding() {
           <Typography variant="h6" sx={{ mb: 4, color: alpha('#fff', 0.9) }}>
             Únete a miles de empresas que ya confían en nosotros
           </Typography>
-          <GradientButton 
+          <Button 
             size="large"
+            variant="contained"
             sx={{ 
-              backgroundColor: 'white',
-              color: palette[600],
+              backgroundColor: '#ffffff',
+              color: palette[700],
+              fontWeight: 700,
+              fontSize: '1.1rem',
+              padding: theme => theme.spacing(1.5, 4),
+              borderRadius: 4,
+              textTransform: 'none',
+              border: `2px solid ${alpha('#ffffff', 0.2)}`,
+              boxShadow: `0 8px 24px ${alpha('#000', 0.2)}`,
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
               '&:hover': {
-                backgroundColor: alpha('#fff', 0.9)
+                backgroundColor: '#ffffff',
+                transform: 'translateY(-2px)',
+                boxShadow: `0 12px 32px ${alpha('#000', 0.3)}`,
+                border: `2px solid ${alpha('#ffffff', 0.4)}`
               }
             }}
           >
             Comenzar Ahora - Es Gratis
-          </GradientButton>
+          </Button>
         </Container>
       </Box>
     </Box>
