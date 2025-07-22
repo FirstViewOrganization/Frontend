@@ -4,6 +4,10 @@ import { Box, Container, Typography, Button, Grid, Card, CardContent, Avatar, St
 import { styled, alpha } from '@mui/material/styles';
 import { useTheme } from '@/contexts/ThemeContext';
 import { colorPalettes } from '@/contexts/ThemeContext';
+import HeroSection from '@/app/landingComponents/sections/HeroSection';
+import NewsSection from '@/app/landingComponents/sections/NewsSection';
+import CatalogSection from '@/app/landingComponents/sections/CatalogSection';
+import ContactSection from '@/app/landingComponents/sections/ContactSection';
 import LandingCard from '@/app/landingComponents/LandingCard';
 import LandingCarrousel from '@/app/landingComponents/LandingCarrousel';
 import LandingText from '@/app/landingComponents/LandingText';
@@ -149,6 +153,60 @@ export default function ModernLanding() {
   const { currentPalette } = useTheme();
   const palette = colorPalettes[currentPalette as keyof typeof colorPalettes];
   
+  // Sample data for modular components
+  const sampleNews = [
+    {
+      id: '1',
+      title: 'Lanzamos nuestra nueva funcionalidad de IA',
+      description: 'Descubre cómo la inteligencia artificial está transformando la experiencia de usuario',
+      date: '15 Dic 2024',
+      category: 'Innovación',
+      image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+    },
+    {
+      id: '2',
+      title: 'Nuevas integraciones empresariales',
+      description: 'Conecta con más de 50 herramientas empresariales de forma nativa',
+      date: '12 Dic 2024',
+      category: 'Producto',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'
+    }
+  ];
+
+  const sampleProducts = [
+    {
+      id: '1',
+      name: 'Plan Professional',
+      description: 'Ideal para equipos medianos que buscan herramientas avanzadas',
+      price: 99,
+      originalPrice: 129,
+      rating: 4.8,
+      category: 'Software',
+      image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+      featured: true
+    },
+    {
+      id: '2',
+      name: 'Plan Enterprise',
+      description: 'Solución completa para grandes organizaciones',
+      price: 299,
+      rating: 4.9,
+      category: 'Software',
+      image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80',
+      featured: true
+    }
+  ];
+
+  const contactInfo = {
+    email: 'contacto@empresa.com',
+    phone: '+34 900 123 456',
+    address: 'Calle Innovation 123, Madrid, España',
+    social: {
+      linkedin: 'https://linkedin.com/company/empresa',
+      twitter: 'https://twitter.com/empresa'
+    }
+  };
+  
   const features = [
     {
       icon: <TrendingUpIcon sx={{ fontSize: 40, color: 'primary.main' }} />,
@@ -194,113 +252,17 @@ export default function ModernLanding() {
 
   return (
     <Box>
-      {/* Hero Section Mejorado */}
-      <HeroSection>
-        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-          <Grid container spacing={6} alignItems="center">
-            <Grid item xs={12} md={7}>
-              <Stack spacing={4}>
-                <Box>
-                  <Chip 
-                    label="🚀 Nuevo: AI-Powered Analytics" 
-                    sx={{ 
-                      mb: 3, 
-                      backgroundColor: alpha('#fff', 0.2),
-                      color: 'white',
-                      backdropFilter: 'blur(10px)'
-                    }} 
-                  />
-                  <Typography 
-                    variant="h1" 
-                    component="h1" 
-                    sx={{ 
-                      fontSize: { xs: '2.5rem', md: '3.5rem', lg: '4rem' },
-                      fontWeight: 800,
-                      lineHeight: 1.1,
-                      mb: 2
-                    }}
-                  >
-                    El Futuro de la
-                    <Box component="span" sx={{ 
-                      background: 'linear-gradient(45deg, #FFD700, #FFA500)',
-                      backgroundClip: 'text',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      display: 'block'
-                    }}>
-                      Transformación Digital
-                    </Box>
-                  </Typography>
-                </Box>
-                
-                <LandingText 
-                  text="Potencia tu negocio con IA avanzada, analytics en tiempo real y automatización inteligente. Únete a miles de empresas que ya transformaron su futuro."
-                  variant="h6"
-                  sx={{ 
-                    color: alpha('#fff', 0.9), 
-                    fontWeight: 300,
-                    lineHeight: 1.6,
-                    maxWidth: '600px'
-                  }}
-                />
-
-                <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} alignItems="flex-start">
-                  <GradientButton 
-                    size="large"
-                    endIcon={<ArrowForwardIcon />}
-                  >
-                    Comenzar Gratis
-                  </GradientButton>
-                  <Button 
-                    variant="outlined" 
-                    size="large"
-                    sx={{ 
-                      borderColor: alpha('#fff', 0.5),
-                      color: 'white',
-                      borderRadius: 4,
-                      padding: theme => theme.spacing(1.5, 4),
-                      fontWeight: 600,
-                      textTransform: 'none',
-                      '&:hover': { 
-                        borderColor: 'white',
-                        backgroundColor: alpha('#fff', 0.1)
-                      }
-                    }}
-                  >
-                    Ver Demo en Vivo
-                  </Button>
-                </Stack>
-
-                <Stack direction="row" spacing={2} alignItems="center" sx={{ pt: 2 }}>
-                  <CheckCircleIcon sx={{ color: '#4CAF50' }} />
-                  <Typography variant="body2" sx={{ color: alpha('#fff', 0.8) }}>
-                    Sin tarjeta de crédito • Configuración en 5 minutos
-                  </Typography>
-                </Stack>
-              </Stack>
-            </Grid>
-            
-            <Grid item xs={12} md={5}>
-              <Box 
-                component="img"
-                src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                alt="Dashboard Preview"
-                sx={{
-                  width: '100%',
-                  height: 'auto',
-                  borderRadius: 3,
-                  boxShadow: `0 20px 60px ${alpha('#000', 0.3)}`,
-                  transform: { md: 'perspective(1000px) rotateY(-5deg) rotateX(5deg)' },
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    transform: { md: 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.02)' }
-                  }
-                }}
-              />
-            </Grid>
-          </Grid>
-        </Container>
-      </HeroSection>
+      {/* Hero Section using modular component */}
+      <HeroSection
+        title="El Futuro de la Transformación Digital"
+        description="Potencia tu negocio con IA avanzada, analytics en tiempo real y automatización inteligente. Únete a miles de empresas que ya transformaron su futuro."
+        primaryButtonText="Comenzar Gratis"
+        secondaryButtonText="Ver Demo en Vivo"
+        theme="modern"
+        showBadges={true}
+        badges={["🚀 Nuevo: AI-Powered Analytics", "✓ Sin tarjeta de crédito"]}
+        heroImage="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      />
 
       {/* Stats Section */}
       <Box sx={{ py: 8, backgroundColor: 'background.paper' }}>
@@ -457,46 +419,35 @@ export default function ModernLanding() {
         </Container>
       </Box>
 
-      {/* CTA Section */}
-      <Box sx={{ 
-        py: 12, 
-        background: `linear-gradient(135deg, ${palette[600]} 0%, ${palette[500]} 100%)`,
-        color: 'white',
-        textAlign: 'center'
-      }}>
-        <Container maxWidth="md">
-          <Typography variant="h2" component="h2" sx={{ fontWeight: 700, mb: 3 }}>
-            ¿Listo para Transformar tu Negocio?
-          </Typography>
-          <Typography variant="h6" sx={{ mb: 4, color: alpha('#fff', 0.9) }}>
-            Únete a miles de empresas que ya confían en nosotros
-          </Typography>
-          <Button 
-            size="large"
-            variant="contained"
-            sx={{ 
-              backgroundColor: '#ffffff',
-              color: palette[700],
-              fontWeight: 700,
-              fontSize: '1.1rem',
-              padding: theme => theme.spacing(1.5, 4),
-              borderRadius: 4,
-              textTransform: 'none',
-              border: `2px solid ${alpha('#ffffff', 0.2)}`,
-              boxShadow: `0 8px 24px ${alpha('#000', 0.2)}`,
-              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              '&:hover': {
-                backgroundColor: '#ffffff',
-                transform: 'translateY(-2px)',
-                boxShadow: `0 12px 32px ${alpha('#000', 0.3)}`,
-                border: `2px solid ${alpha('#ffffff', 0.4)}`
-              }
-            }}
-          >
-            Comenzar Ahora - Es Gratis
-          </Button>
-        </Container>
-      </Box>
+      {/* News Section using modular component */}
+      <NewsSection
+        title="Últimas Novedades"
+        subtitle="Mantente al día con nuestras innovaciones y actualizaciones"
+        news={sampleNews}
+        variant="grid"
+        theme="modern"
+      />
+
+      {/* Catalog Section using modular component */}
+      <CatalogSection
+        title="Nuestros Planes"
+        subtitle="Encuentra la solución perfecta para tu negocio"
+        products={sampleProducts}
+        variant="featured"
+        theme="modern"
+        showPrices={true}
+        showRatings={true}
+      />
+
+      {/* Contact Section using modular component */}
+      <ContactSection
+        title="¿Listo para Transformar tu Negocio?"
+        subtitle="Únete a miles de empresas que ya confían en nosotros"
+        contactInfo={contactInfo}
+        theme="modern"
+        variant="split"
+        showMap={false}
+      />
     </Box>
   );
 }
