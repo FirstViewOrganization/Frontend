@@ -4,7 +4,7 @@ import { Box, Container, Typography, Button, Grid, Card, CardContent, Avatar, St
 import { styled, alpha } from '@mui/material/styles';
 import { useTheme } from '@/contexts/ThemeContext';
 import { colorPalettes } from '@/contexts/ThemeContext';
-import HeroSection from '@/app/landingComponents/sections/HeroSection';
+import ModularHeroSection from '@/app/landingComponents/sections/HeroSection';
 import NewsSection from '@/app/landingComponents/sections/NewsSection';
 import CatalogSection from '@/app/landingComponents/sections/CatalogSection';
 import ContactSection from '@/app/landingComponents/sections/ContactSection';
@@ -16,29 +16,6 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import SecurityIcon from '@mui/icons-material/Security';
 import SpeedIcon from '@mui/icons-material/Speed';
-
-const HeroSection = styled(Box)(({ theme }) => ({
-  position: 'relative',
-  minHeight: '100vh',
-  display: 'flex',
-  alignItems: 'center',
-  background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
-  color: 'white',
-  overflow: 'hidden',
-  '&::before': {
-    content: '""',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundImage: 'url(https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    opacity: 0.1,
-    zIndex: 0
-  }
-}));
 
 const FeatureSection = styled(Box)(({ theme }) => ({
   padding: theme.spacing(12, 0),
@@ -253,7 +230,7 @@ export default function ModernLanding() {
   return (
     <Box>
       {/* Hero Section using modular component */}
-      <HeroSection
+      <ModularHeroSection
         title="El Futuro de la Transformación Digital"
         description="Potencia tu negocio con IA avanzada, analytics en tiempo real y automatización inteligente. Únete a miles de empresas que ya transformaron su futuro."
         primaryButtonText="Comenzar Gratis"
