@@ -3,6 +3,7 @@
 import { Box, Container, Typography, Button, Grid, Card, CardContent, Avatar, Stack, Chip } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
 import { useTheme } from '@/contexts/ThemeContext';
+import { colorPalettes } from '@/contexts/ThemeContext';
 import LandingCard from '@/app/landingComponents/LandingCard';
 import LandingCarrousel from '@/app/landingComponents/LandingCarrousel';
 import LandingText from '@/app/landingComponents/LandingText';
@@ -86,25 +87,26 @@ const GradientButton = styled(Button)(({ theme }) => ({
 
 export default function ModernLanding() {
   const { currentPalette } = useTheme();
+  const palette = colorPalettes[currentPalette as keyof typeof colorPalettes];
   
   const features = [
     {
       icon: <TrendingUpIcon sx={{ fontSize: 40, color: 'primary.main' }} />,
       title: "Crecimiento Escalable",
       content: "Soluciones que crecen contigo, desde startups hasta empresas globales",
-      backgroundColor: alpha(currentPalette.primary, 0.05)
+      backgroundColor: alpha(palette[500], 0.05)
     },
     {
       icon: <SecurityIcon sx={{ fontSize: 40, color: 'secondary.main' }} />,
       title: "Seguridad Avanzada",
       content: "Protección de datos de nivel empresarial con cifrado end-to-end",
-      backgroundColor: alpha(currentPalette.secondary, 0.05)
+      backgroundColor: alpha(palette[600], 0.05)
     },
     {
       icon: <SpeedIcon sx={{ fontSize: 40, color: 'primary.main' }} />,
       title: "Rendimiento Superior",
       content: "Infraestructura optimizada para máxima velocidad y confiabilidad",
-      backgroundColor: alpha(currentPalette.accent, 0.05)
+      backgroundColor: alpha(palette[400], 0.05)
     }
   ];
 
@@ -249,7 +251,7 @@ export default function ModernLanding() {
                 <StatsCard elevation={0}>
                   <Typography variant="h3" component="div" sx={{ 
                     fontWeight: 800, 
-                    background: `linear-gradient(45deg, ${currentPalette.primary}, ${currentPalette.secondary})`,
+                    background: `linear-gradient(45deg, ${palette[600]}, ${palette[500]})`,
                     backgroundClip: 'text',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
@@ -265,7 +267,7 @@ export default function ModernLanding() {
                     size="small" 
                     sx={{ 
                       mt: 1, 
-                      backgroundColor: alpha(currentPalette.primary, 0.1),
+                      backgroundColor: alpha(palette[500], 0.1),
                       color: 'primary.main',
                       fontWeight: 600
                     }} 
@@ -285,7 +287,7 @@ export default function ModernLanding() {
               <Typography variant="h2" component="h2" sx={{ 
                 fontWeight: 700, 
                 mb: 3,
-                background: `linear-gradient(45deg, ${currentPalette.primary}, ${currentPalette.secondary})`,
+                background: `linear-gradient(45deg, ${palette[600]}, ${palette[500]})`,
                 backgroundClip: 'text',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
@@ -303,11 +305,11 @@ export default function ModernLanding() {
                   <Card sx={{
                     height: '100%',
                     borderRadius: 3,
-                    border: `1px solid ${alpha(currentPalette.primary, 0.1)}`,
+                    border: `1px solid ${alpha(palette[500], 0.1)}`,
                     transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                     '&:hover': {
                       transform: 'translateY(-8px)',
-                      boxShadow: `0 20px 40px ${alpha(currentPalette.primary, 0.15)}`
+                      boxShadow: `0 20px 40px ${alpha(palette[500], 0.15)}`
                     }
                   }}>
                     <CardContent sx={{ p: 4, textAlign: 'center' }}>
@@ -330,7 +332,7 @@ export default function ModernLanding() {
       </FeatureSection>
 
       {/* Testimonials Section */}
-      <Box sx={{ py: 12, backgroundColor: alpha(currentPalette.primary, 0.02) }}>
+      <Box sx={{ py: 12, backgroundColor: alpha(palette[500], 0.02) }}>
         <Container maxWidth="lg">
           <Typography variant="h2" component="h2" textAlign="center" sx={{ 
             fontWeight: 700, 
@@ -380,7 +382,7 @@ export default function ModernLanding() {
           <Typography variant="h2" component="h2" textAlign="center" sx={{ 
             fontWeight: 700, 
             mb: 8,
-            background: `linear-gradient(45deg, ${currentPalette.primary}, ${currentPalette.secondary})`,
+            background: `linear-gradient(45deg, ${palette[600]}, ${palette[500]})`,
             backgroundClip: 'text',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent'
@@ -394,7 +396,7 @@ export default function ModernLanding() {
       {/* CTA Section */}
       <Box sx={{ 
         py: 12, 
-        background: `linear-gradient(135deg, ${currentPalette.primary} 0%, ${currentPalette.secondary} 100%)`,
+        background: `linear-gradient(135deg, ${palette[600]} 0%, ${palette[500]} 100%)`,
         color: 'white',
         textAlign: 'center'
       }}>
@@ -409,7 +411,7 @@ export default function ModernLanding() {
             size="large"
             sx={{ 
               backgroundColor: 'white',
-              color: currentPalette.primary,
+              color: palette[600],
               '&:hover': {
                 backgroundColor: alpha('#fff', 0.9)
               }
