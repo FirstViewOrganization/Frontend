@@ -50,11 +50,40 @@ const StatsCard = styled(Card)(({ theme }) => ({
   border: `2px solid ${alpha(theme.palette.primary.main, 0.15)}`,
   boxShadow: `0 4px 20px ${alpha(theme.palette.primary.main, 0.1)}`,
   transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+  position: 'relative',
+  overflow: 'hidden',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
+    opacity: 0,
+    transition: 'opacity 0.3s ease',
+    zIndex: 0
+  },
+  '& > *': {
+    position: 'relative',
+    zIndex: 1
+  },
   '&:hover': {
     transform: 'translateY(-8px)',
-    boxShadow: `0 20px 40px ${alpha(theme.palette.primary.main, 0.2)}`,
-    border: `2px solid ${alpha(theme.palette.primary.main, 0.4)}`,
-    background: `linear-gradient(135deg, ${alpha(theme.palette.primary.main, 0.05)} 0%, #ffffff 100%)`
+    boxShadow: `0 20px 40px ${alpha(theme.palette.primary.main, 0.3)}`,
+    border: `2px solid ${theme.palette.primary.main}`,
+    color: '#ffffff',
+    '&::before': {
+      opacity: 1
+    },
+    '& .MuiTypography-root': {
+      color: '#ffffff !important'
+    },
+    '& .MuiChip-root': {
+      backgroundColor: alpha('#ffffff', 0.2),
+      color: '#ffffff',
+      fontWeight: 700
+    }
   }
 }));
 
